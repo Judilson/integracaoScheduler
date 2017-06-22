@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://etl.giex.com.br/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="ServicoService" targetNamespace="http://etl.giex.com.br/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://etl.giex.com.br/" elementFormDefault="unqualified" targetNamespace="http://etl.giex.com.br/" version="1.0">
+
+  <xs:element name="ChamaCredor" type="tns:ChamaCredor"/>
+
+  <xs:element name="ChamaCredorResponse" type="tns:ChamaCredorResponse"/>
+
+  <xs:complexType name="ChamaCredor">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="credor" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ChamaCredorResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="ChamaCredorResponse">
+    <wsdl:part element="tns:ChamaCredorResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ChamaCredor">
+    <wsdl:part element="tns:ChamaCredor" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="Servico">
+    <wsdl:operation name="ChamaCredor">
+      <wsdl:input message="tns:ChamaCredor" name="ChamaCredor">
+    </wsdl:input>
+      <wsdl:output message="tns:ChamaCredorResponse" name="ChamaCredorResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServicoServiceSoapBinding" type="tns:Servico">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="ChamaCredor">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="ChamaCredor">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="ChamaCredorResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServicoService">
+    <wsdl:port binding="tns:ServicoServiceSoapBinding" name="ServicoPort">
+      <soap:address location="http://localhost:8080/integracaoService/Servico"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
